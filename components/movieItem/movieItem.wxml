@@ -1,0 +1,33 @@
+<!--components/movie_item/movieItem.wxml-->
+<view class='movie-item'>
+  <view class='picture-container'>  
+    <image 
+      mode='aspectFill' 
+      class='movie-picture' 
+      lazy-load='{{true}}' 
+      src='{{movie.picture}}'
+      bindtap='handlePictureTab'
+      data-movie='{{movie}}'>
+    </image>
+  </view>
+  <view class='movie-detail'>  
+    <view class='movie-name'>
+      {{movie.title}}
+    </view>
+    <!-- <view class='movie-language'>
+      <label class='movie-label'>语言:</label>{{movie.language}}
+    </view> -->
+    <view class='movie-director'>
+      <label class='movie-label'>导演:</label>{{movie.director}}
+    </view>
+    <view class='movie-actor'>
+      <label class='movie-label'>演员:</label>{{movie.actor}}
+    </view>
+    <view class='movie-publish'>
+      <label class='movie-label'>地区:</label>{{movie.country}}
+    </view>
+    <!-- <view class='movie-publish'>
+      <label class='movie-label'>产地:</label>{{movie.country}}
+    </view> -->
+  </view>
+</view>

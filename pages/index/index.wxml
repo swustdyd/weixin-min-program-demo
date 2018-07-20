@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+  <view hidden='{{!showState.user}}' class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view hidden='{{!showState.search}}' class='search-container'>
+    <input id='searchInput' confirm-type='搜索' placeholder='请输入关键字...'></input>
+    <button id='searchBtn' plain='{{true}}' size='mini' type='primary' confirm-type>
+      <image mode='aspectFit' src='../../images/icons/search_fff.png'></image>
+    </button>
+  </view>
+  <view hidden='{{!showState.movie}}' class='movie-list'>
+    <block wx:if='{{movies.length > 0}}'>
+      <block wx:for='{{movies}}' wx:key='{{_id}}'>
+        <movie bind:pictureTab='handlePictureTab' class='movie-item' movie='{{item}}'/>
+      </block>
+    </block>
+    <block wx:else>
+      暂无数据
+    </block>
+  </view>
+  <tab 
+    class="tab-bottom" 
+    tabs="{{tabs}}" 
+    defaultActive="{{defaultActive}}" 
+    bind:itemtab="handleItemTab"
+    />
+</view>

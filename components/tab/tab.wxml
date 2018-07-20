@@ -1,0 +1,13 @@
+<!--components/tab/tab.wxml-->
+<view class="tab" >
+  <block wx:for="{{tabs}}" wx:key="{{key}}" wx:for-index="idx" wx:for-item="tab">
+    <view class="{{tab.className}}" bindtap='handleItemTab' data-key="{{tab.key}}" >
+      <image 
+        class='tab-icon' 
+        src='{{tab.icon}}' 
+        mode='aspectFit'>
+      </image>
+      <view>{{tab.name}}</view>
+    </view>
+  </block>
+</view>

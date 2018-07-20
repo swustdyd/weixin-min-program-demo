@@ -1,0 +1,22 @@
+/* components/tab/tab.wxss */
+.tab{
+  display: flex;
+  color: #888;
+  flex-direction: row;
+  background-color: #fff;
+  box-shadow: 0 0 15rpx #888;
+}
+.tab-item{
+  padding: 10rpx;
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+}
+.tab-item-active{
+  background-color: #09bb07;
+  color: #fff;
+}
+.tab-icon{
+  width: 50rpx;
+  height: 50rpx;
+}

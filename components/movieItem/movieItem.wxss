@@ -1,0 +1,46 @@
+/* components/movie_item/movieItem.wxss */
+.movie-item{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border-bottom: 1px #ddd solid;
+  padding-bottom: 10rpx;
+  margin-bottom: 10rpx;
+}
+.picture-container{  
+  width: 150rpx;
+  height: 150rpx;
+  padding-top: 10rpx;
+}
+.movie-picture{
+  width: 110rpx;
+  height: 150rpx;
+}
+.movie-detail{
+  padding-left: 10rpx;
+}
+.movie-name{
+  display: block;
+  text-align: left;
+  font-size: 32rpx;
+  width: 500rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.movie-language,
+.movie-director,
+.movie-actor,
+.movie-publish{
+  margin-top: 10rpx;
+  color: #888;
+  font-size: 24rpx;
+}
+.movie-label{
+  margin-right: 10rpx;
+  color: #000;
+}
+.sub-title{
+  color: #888;
+}
