@@ -1,1 +1,9 @@
 /* pages/detail/detail.wxss */
+.detail-container{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+.movie-picture{
+  width: 100%;
+}

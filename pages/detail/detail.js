@@ -25,10 +25,9 @@ Page({
       url: `${api.getMovieDetail}?movieId=${options.movieId}`,
       success: (res) => {
         const { data } = res;
-        console.log(data);
         if (data.success) {
           this.setData({
-            movie: data.result
+            movie: data.result[0]
           })
         } else {
           wx.showToast({

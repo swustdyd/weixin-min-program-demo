@@ -1,2 +1,15 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class='detail-container'>
+  <image class='movie-picture' src='{{movie.picture}}' mode='aspectFit'></image>
+  <view class='movie-summeay'>{{movie.countrys}}</view>
+  <view class='movie-summeay'>{{movie.year}}</view>
+  <view class='movie-summeay'>{{movie.types}}</view>
+  <view class='movie-summeay'>{{movie.akas}}</view>
+  <view class='movie-summeay'>{{movie.countrys}}</view>
+  <view class='movie-summeay'>{{movie.languages}}</view>
+  <view class='movie-summeay'>{{movie.publishdates}}</view>
+  <view class='movie-summeay'>{{movie.directors}}</view>
+  <view class='movie-summeay'>{{movie.writers}}</view>
+  <view class='movie-summeay'>{{movie.actors}}</view>
+  <view class='movie-summeay'>{{movie.summary}}</view>
+</view>
