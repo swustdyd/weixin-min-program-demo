@@ -114,9 +114,10 @@ Page({
       },
       fail: (err) => {
         wx.showToast({
-          title: `get movie data fail, because of '${err.message}'`,
+          title: `get movie data fail, because of '${err.errMsg}'`,
           icon: 'none',
-          mask: true
+          mask: true,
+          duration: 5000
         });
         if (cb) {
           cb();
