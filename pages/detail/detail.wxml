@@ -1,15 +1,73 @@
 <!--pages/detail/detail.wxml-->
 <view class='detail-container'>
   <image class='movie-picture' src='{{movie.picture}}' mode='aspectFit'></image>
-  <view class='movie-summeay'>{{movie.countrys}}</view>
-  <view class='movie-summeay'>{{movie.year}}</view>
-  <view class='movie-summeay'>{{movie.types}}</view>
-  <view class='movie-summeay'>{{movie.akas}}</view>
-  <view class='movie-summeay'>{{movie.countrys}}</view>
-  <view class='movie-summeay'>{{movie.languages}}</view>
-  <view class='movie-summeay'>{{movie.publishdates}}</view>
-  <view class='movie-summeay'>{{movie.directors}}</view>
-  <view class='movie-summeay'>{{movie.writers}}</view>
-  <view class='movie-summeay'>{{movie.actors}}</view>
-  <view class='movie-summeay'>{{movie.summary}}</view>
+  <view class='movie-title'>{{movie.title}}({{movie.year}})</view>
+  <view hidden='{{ movie.countrys.length < 1}}' class='movie-items'>
+    <label class='movie-label'>产地:</label>
+    <view class='movie-values'>
+      <label wx:for='{{movie.countrys}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>类型:</label>
+    <view class='movie-values'>
+      <label wx:for='{{movie.types}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view hidden='{{ movie.akas.length < 1}}' class='movie-items'>
+    <label class='movie-label'>别名:</label>
+    <view class='movie-values'>
+      <label wx:for='{{movie.akas}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>语言:</label>
+    <view class='movie-values'>
+      <label wx:for='{{movie.languages}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>导演:</label>    
+    <view class='movie-values'>
+      <label wx:for='{{movie.directors}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>编剧:</label>
+    <view class='movie-values'>
+      <label wx:for='{{movie.writers}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>演员:</label>
+    <view class='movie-values'>    
+      <label wx:for='{{movie.actors}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>  
+  <view class='movie-items'>
+    <label class='movie-label'>上映日期:</label>    
+    <view class='movie-values'>
+      <label wx:for='{{movie.publishdates}}' class='movie-value'>
+        {{item}}
+      </label>
+    </view>
+  </view>
+  <view class='movie-items'>
+    <label class='movie-label'>简介:</label>
+  </view>
+  <view class='movie-summary'>{{movie.summary}}</view>
 </view>

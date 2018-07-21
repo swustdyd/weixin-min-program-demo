@@ -1,5 +1,27 @@
 // pages/detail/detail.js
 const api = require('../../confs/api.js')
+
+const rebuildKeys = {
+  countrys: 1,
+  akas: 1,
+  publishdates: 1,
+  languages: 1,
+  types: 1,
+  actors: 1,
+  writers: 1,
+  directors: 1
+}
+
+const rebuildMovie = (movie) => {
+  for (const key in movie) {
+    if (rebuildKeys[key]) {
+      let item = movie[key];
+      item && (movie[key] = item.split('&&'))
+    }
+  }
+  return movie;
+}
+
 Page({
 
   /**
@@ -13,6 +35,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: 'loading...',
+      mask: true
+    })
     const maxLength = 10;
     let title = options.title || 'detail';
     if (title.length > maxLength){
@@ -26,8 +52,9 @@ Page({
       success: (res) => {
         const { data } = res;
         if (data.success) {
+          const movie = rebuildMovie(data.result[0]);
           this.setData({
-            movie: data.result[0]
+            movie: movie
           })
         } else {
           wx.showToast({
@@ -36,6 +63,7 @@ Page({
             mask: true
           })
         }
+        wx.hideLoading();
       },
       fail: (err) => {
         wx.showToast({
@@ -43,6 +71,7 @@ Page({
           icon: 'none',
           mask: true
         });
+        wx.hideLoading();
       }
     })
   },

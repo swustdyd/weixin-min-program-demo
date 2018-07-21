@@ -3,7 +3,37 @@
   display: flex;
   flex-flow: column;
   justify-content: center;
+  padding: 20rpx;
 }
 .movie-picture{
   width: 100%;
+}
+.movie-title{
+  text-align: center;
+}
+.movie-items{
+  display: flex;
+  align-items: baseline;
+}
+.movie-label,
+.movie-value{
+  font-size: 28rpx;
+}
+.movie-label{
+  margin-right: 10rpx;
+  flex-shrink: 0;
+}
+.movie-values{
+  flex-shrink: 1;
+}
+.movie-value{
+  color: #888;
+}
+.movie-summary{
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  text-indent: 2em;
+  text-align: justify;  
+  color: #888;
 }
