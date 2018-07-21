@@ -10,12 +10,12 @@
 }
 .picture-container{  
   width: 150rpx;
-  height: 150rpx;
+  height: 180rpx;
   padding-top: 10rpx;
 }
 .movie-picture{
-  width: 110rpx;
-  height: 150rpx;
+  width: 130rpx;
+  height: 170rpx;
 }
 .movie-detail{
   padding-left: 10rpx;
