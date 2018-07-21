@@ -40,7 +40,6 @@ Page({
     })
   },
   onLoad: function () {
-    wx.hideLoading();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -70,7 +69,6 @@ Page({
     this.getMovies();
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -93,6 +91,10 @@ Page({
   },
 
   getMovies: function (pageIndex = 0, cb){
+    wx.showLoading({
+      title: 'loading...',
+      mask: true
+    })
     wx.request({
       url: `${api.getMovies}?pageIndex=${pageIndex}`,
       success: (res) => {
@@ -111,6 +113,7 @@ Page({
         if (cb) {
           cb();
         }
+        wx.hideLoading();
       },
       fail: (err) => {
         wx.showToast({
@@ -122,17 +125,18 @@ Page({
         if (cb) {
           cb();
         }
+        wx.hideLoading();
       }
     })
   },
   onPullDownRefresh: function () {
-    wx.showLoading({
-      title: 'loading...',
-      mask: true
-    })
-    this.getMovies(1, () => {
-      wx.hideLoading();
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    //   mask: true
+    // })
+    // this.getMovies(1, () => {
+    //   wx.hideLoading();
+    // })
   },
   handlePictureTab: function(e){
     const { movie } = e.detail;
