@@ -1,9 +1,12 @@
 <!--pages/detail/detail.wxml-->
 <view class='detail-container'>
   <image class='movie-picture' src='{{movie.picture}}' mode='aspectFit'></image>
-  <view class='movie-title'>{{movie.title}}({{movie.year}})</view>
+  <view class='movie-title'>
+    {{movie.title}}
+    ({{movie.year}})
+  </view>
   <view hidden='{{ movie.countrys.length < 1}}' class='movie-items'>
-    <label class='movie-label'>产地:</label>
+    <label class='movie-label'>地区:</label>
     <view class='movie-values'>
       <label wx:for='{{movie.countrys}}' class='movie-value'>
         {{item}}
@@ -58,6 +61,12 @@
       </label>
     </view>
   </view>  
+  <view class='movie-items'>
+    <label class='movie-label'>评分:</label>   
+      <label class='movie-value movie-average'>        
+       {{movie.average + ''}}
+      </label>
+  </view>   
   <view class='movie-items'>
     <label class='movie-label'>上映日期:</label>    
     <view class='movie-values'>

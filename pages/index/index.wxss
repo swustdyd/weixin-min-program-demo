@@ -17,6 +17,7 @@
 }
 
 .movie-list{
+  width: 100%;
   margin-bottom: 100rpx;
 }
 

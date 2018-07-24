@@ -1,27 +1,6 @@
 // pages/detail/detail.js
 const api = require('../../confs/api.js')
 
-const rebuildKeys = {
-  countrys: 1,
-  akas: 1,
-  publishdates: 1,
-  languages: 1,
-  types: 1,
-  actors: 1,
-  writers: 1,
-  directors: 1
-}
-
-const rebuildMovie = (movie) => {
-  for (const key in movie) {
-    if (rebuildKeys[key]) {
-      let item = movie[key];
-      item && (movie[key] = item.split('&&'))
-    }
-  }
-  return movie;
-}
-
 Page({
 
   /**
@@ -52,9 +31,8 @@ Page({
       success: (res) => {
         const { data } = res;
         if (data.success) {
-          const movie = rebuildMovie(data.result[0]);
           this.setData({
-            movie: movie
+            movie: data.result[0]
           })
         } else {
           wx.showToast({

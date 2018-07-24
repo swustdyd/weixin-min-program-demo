@@ -16,7 +16,11 @@
   <view hidden='{{!showState.movie}}' class='movie-list'>
     <block wx:if='{{movies.length > 0}}'>
       <block wx:for='{{movies}}' wx:key='{{_id}}'>
-        <movie bind:pictureTab='handlePictureTab' class='movie-item' movie='{{item}}'/>
+        <movie 
+          bind:pictureTab='handlePictureTab' 
+          class='movie-item' 
+          movie='{{item}}'
+          bind:deleteMovie="handleDeleteMovie"/>
       </block>
     </block>
     <block wx:else>

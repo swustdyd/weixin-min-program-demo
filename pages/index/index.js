@@ -89,7 +89,18 @@ Page({
       showState
     })
   },
-
+  handleDeleteMovie: function(e){
+    const { movie: targetMovie } = e.detail;
+    const result = this.data.movies.forEach((movie, index) => {
+      if (targetMovie._id === movie._id){
+        this.data.movies.splice(index, 1);
+        return false;
+      }
+    });
+    this.setData({
+      movies: this.data.movies
+    })
+  },
   getMovies: function (pageIndex = 0, cb){
     wx.showLoading({
       title: 'loading...',

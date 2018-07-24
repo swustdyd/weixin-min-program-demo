@@ -17,3 +17,21 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime
 }
+
+module.exports.getTouchMoveDirection = (eStart, eEnd, minDeviation = 5) => {
+  const { changedTouches: startTouches} = eStart;
+  const { changedTouches: endTouches } = eEnd;
+  const xDeviation = endTouches[0].clientX - startTouches[0].clientX;
+  const yDeviation = endTouches[0].clientY - startTouches[0].clientY;
+
+  if (Math.abs(xDeviation) < minDeviation && Math.abs(yDeviation) < minDeviation ){
+    return null;
+  }
+  
+  if (Math.abs(xDeviation) >= Math.abs(yDeviation)){
+    return xDeviation > 0 ? 'right' : 'left';
+  }else{
+    return yDeviation > 0 ? 'down' : 'up';
+  }
+}
+
