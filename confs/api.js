@@ -21,7 +21,8 @@ const api = {
   getDoubanMovies: 'movie/getDoubanMovies',
   getGroupInfoOfDouban: 'movie/getGroupInfoOfDouban',
   getLanguage: 'movie/getLanguage',
-  getMovieDetail: 'movie/getMovieDetail'
+  getMovieDetail: 'movie/getMovieDetail',
+  searchMovie: 'movie/searchMovie'
 };
 
 for (const key in api) {

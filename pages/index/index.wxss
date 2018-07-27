@@ -30,8 +30,14 @@
   width: 100%;
   margin: 0 10rpx 10rpx 10rpx;
   display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.search-input-container{
+  display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  margin-bottom: 20rpx;
 }
 #searchInput{
   border: 1px solid #ddd;
@@ -40,6 +46,7 @@
   width: 500rpx;
   height: 50rpx;
   min-height: 50rpx;
+  padding: 0 10rpx;
 }
 #searchInput:focus{
   box-shadow: 0 0 20rpx #09bb07;
@@ -56,4 +63,9 @@
 #searchBtn image{
   height: 42rpx;
   width: 42rpx;
+}
+.search-tip{
+  text-align: center;
+  font-size:28rpx;
+  color: #888;
 }

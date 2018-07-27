@@ -8,10 +8,39 @@
     </block>
   </view>
   <view hidden='{{!showState.search}}' class='search-container'>
-    <input id='searchInput' confirm-type='搜索' placeholder='请输入关键字...'></input>
-    <button id='searchBtn' plain='{{true}}' size='mini' type='primary' confirm-type>
-      <image mode='aspectFit' src='../../images/icons/search_fff.png'></image>
-    </button>
+    <view class="search-input-container">      
+      <input 
+        id='searchInput' 
+        confirm-type='搜索'
+        bindinput="handleSearchInput"
+        bindconfirm="handleSearchConfirm"
+        placeholder='请输入关键字...'></input>
+      <button 
+        bindtap="handleSearchBtnClick" 
+        id='searchBtn' 
+        plain='{{true}}' 
+        size='mini' 
+        type='primary' 
+        confirm-type>
+        <image mode='aspectFit' src='../../images/icons/search_fff.png'></image>
+      </button>
+    </view>
+    <view class='movie-list'>
+      <view wx:if="{{loading}}" class="search-tip" >
+        搜索中...
+      </view>
+      <block wx:elif='{{searchMovies.length > 0}}'>
+        <block wx:for='{{searchMovies}}' wx:key='{{_id}}'>
+          <movie 
+            bind:pictureTab='handlePictureTab' 
+            class='movie-item' 
+            movie='{{item}}'/>
+        </block>
+      </block>
+      <view wx:else class="search-tip" >
+        暂无数据
+      </view>
+    </view>
   </view>
   <view hidden='{{!showState.movie}}' class='movie-list'>
     <block wx:if='{{movies.length > 0}}'>

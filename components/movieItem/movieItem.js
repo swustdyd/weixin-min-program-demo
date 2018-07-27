@@ -13,11 +13,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    left: 0
-  },
-
-  detached: function(e){
-    // console.log(this);
+    left: 0,
+    startX: 0,
+    startY: 0
   },
 
   /**
@@ -28,16 +26,51 @@ Component({
       const {movie} = e.currentTarget.dataset;
       this.triggerEvent('pictureTab', {movie});
     },
-    handleScroll: function(e){
-      const { scrollLeft, deltaX} = e.detail;
-      // console.log(deltaX, scrollLeft);
-    },
     handleDeleteMovie: function(e){
       const {movie} = e.currentTarget.dataset;
       this.setData({
         left: 0
       })
       this.triggerEvent('deleteMovie', {movie});
+    },
+    scrollViewTouchstart: function (e) {
+      const { clientX: startX, clientY: startY} = e.changedTouches[0];
+      this.setData({
+        startX,
+        startY
+      })
+    },
+    scrollViewTouchend: function (e) {
+      const { clientX: endX, clientY: endY } = e.changedTouches[0];
+      const {startX, startY} = this.data;
+      const sub = startX - endX;
+      const subY = startY - endY;
+      if (Math.abs(sub) > Math.abs(subY)){
+        //向左滑，距离>=50
+        if ((startX > endX && Math.abs(sub) >= 50)) {
+          this.setData({
+            left: 1000
+          })
+        }
+        //向左滑，距离<50
+        if ((startX > endX && Math.abs(sub) < 50)) {
+          this.setData({
+            left: 0
+          })
+        }
+        //向右滑，距离>=50
+        if ((startX < endX && Math.abs(sub) >= 50)) {
+          this.setData({
+            left: 0
+          })
+        }
+        //向右滑，距离<50
+        if ((startX < endX && Math.abs(sub) < 50)) {
+          this.setData({
+            left: 1000
+          })
+        }
+      }      
     }
   }
 })

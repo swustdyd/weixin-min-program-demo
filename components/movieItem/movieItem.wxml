@@ -3,8 +3,9 @@
   <scroll-view 
     scroll-x 
     scroll-with-animation 
-    bindscroll="handleScroll" 
     scroll-left="{{left}}"
+    bindtouchstart='scrollViewTouchstart'
+    bindtouchend='scrollViewTouchend'
     class="movie-item">
     <view class='picture-container'>  
       <image 
@@ -12,7 +13,7 @@
         class='movie-picture' 
         lazy-load='{{true}}' 
         src='{{movie.picture}}'
-        bindtap='handlePictureTab'
+        catchtap='handlePictureTab'
         data-movie='{{movie}}'>
       </image>
     </view>

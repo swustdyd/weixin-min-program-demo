@@ -35,6 +35,10 @@ const icons = {
   search: {
     normal: '../../images/icons/search_888.png',
     active: '../../images/icons/search_fff.png'
+  },
+  star: {
+    normal: '../../images/icons/star_888.png',
+    active: '../../images/icons/star_fff.png'
   }
 }
 

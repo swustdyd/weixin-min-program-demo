@@ -13,8 +13,8 @@ Page({
     tabs: [
       {
         key: 'movie',
-        name: '电影',
-        type: 'list'
+        name: 'TOP 30',
+        type: 'star'
       },
       {
         key: 'search',
@@ -31,7 +31,10 @@ Page({
       movie: true
     },
     defaultActive: 'movie',
-    movies: []
+    movies: [],
+    searchInput: '',
+    searchMovies: [],
+    loading: false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -66,7 +69,7 @@ Page({
         }
       })
     }
-    this.getMovies();
+    this.getTopMovies();
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -101,13 +104,16 @@ Page({
       movies: this.data.movies
     })
   },
-  getMovies: function (pageIndex = 0, cb){
+  getTopMovies: function (pageIndex = 0, cb){
     wx.showLoading({
       title: 'loading...',
       mask: true
     })
+    this.setData({
+      loading: true
+    })
     wx.request({
-      url: `${api.getMovies}?pageIndex=${pageIndex}`,
+      url: `${api.getMovies}?pageIndex=${pageIndex}&order=avg`,
       success: (res) => {
         const {data} = res;
         if(data.success){
@@ -124,6 +130,9 @@ Page({
         if (cb) {
           cb();
         }
+        this.setData({
+          loading: false
+        })
         wx.hideLoading();
       },
       fail: (err) => {
@@ -137,22 +146,82 @@ Page({
           cb();
         }
         wx.hideLoading();
+
+        this.setData({
+          loading: false
+        })
       }
     })
   },
-  onPullDownRefresh: function () {
-    // wx.showLoading({
-    //   title: 'loading...',
-    //   mask: true
-    // })
-    // this.getMovies(1, () => {
-    //   wx.hideLoading();
-    // })
+  handleSearchBtnClick: function () {
+    let keyWords = this.data.searchInput;
+    if(!keyWords){
+      wx.showToast({
+        title: '请输入关键词',
+        icon: 'none',
+        mask: true
+      })
+      return;
+    }
+
+    this.setData({
+      loading: true
+    })
+    wx.showLoading({
+      title: 'searching...',
+      mask: true
+    })
+    keyWords = encodeURIComponent(keyWords);
+    wx.request({
+      url: `${api.searchMovie}?keyWords=${keyWords}`,
+      success: (res) => {
+        const { data } = res;
+        if (data.success) {
+          this.setData({
+            searchMovies: data.result
+          })
+        } else {
+          wx.showToast({
+            title: data.message,
+            icon: 'none',
+            mask: true
+          })
+        }
+
+        this.setData({
+          loading: false
+        })
+        wx.hideLoading();
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: `get movie data fail, because of '${err.errMsg}'`,
+          icon: 'none',
+          mask: true,
+          duration: 5000
+        });
+
+        this.setData({
+          loading: false
+        })
+        wx.hideLoading();
+      }
+    })
   },
   handlePictureTab: function(e){
     const { movie } = e.detail;
     wx.navigateTo({
       url: `/pages/detail/detail?movieId=${movie._id}&title=${movie.title}`
     })
-  }
+  },
+  handleSearchInput: function(e){
+    const { value } = e.detail;
+    this.data.searchInput = value;
+  },
+  handleSearchConfirm: function(e){
+    const { value } = e.detail;
+    this.data.searchInput = value;
+    this.handleSearchBtnClick();
+    console.log(value);
+  }  
 })
